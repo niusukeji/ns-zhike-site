@@ -1,0 +1,100 @@
+/* ✅ Tailwind v4 推荐写法 */
+@import "tailwindcss";
+
+/* 可选：声明要扫描样式的源码目录（更稳） */
+@source "../app/**/*.{js,ts,jsx,tsx}" "../components/**/*.{js,ts,jsx,tsx}";
+
+/* 你的全局样式 */
+:root { color-scheme: dark; }
+html, body { height: 100%; background-color: #0b1220; }
+
+/* --- 工业硬核风辅助类 --- */
+.industrial-bg {
+  background:
+    radial-gradient(60% 40% at 50% -10%, rgba(14,165,233,.18), transparent 60%),
+    radial-gradient(30% 20% at 80% 0%, rgba(34,211,238,.15), transparent 60%),
+    #0b1220;
+}
+
+.hero-arc {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(140% 60% at 50% -10%, rgba(56,189,248,.18), transparent 60%);
+  pointer-events: none;
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 100% 36px;
+  opacity: .12;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  pointer-events: none;
+}
+
+.card-glass {
+  box-shadow: 0 0 0 1px rgba(51,65,85,.5) inset, 0 8px 30px rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+}
+
+.shadow-cyan {
+  box-shadow: 0 10px 20px -8px rgba(34,211,238,.35);
+}
+
+/* 大屏视觉布局微调 */
+@media (min-width: 1440px) {
+  .hero-arc {
+    background: radial-gradient(100% 50% at 50% -20%, rgba(56,189,248,.25), transparent 75%);
+  }
+  .industrial-bg {
+    background:
+      linear-gradient(to bottom, rgba(15,23,42,.9), rgba(15,23,42,.96)),
+      radial-gradient(70% 45% at 50% -10%, rgba(56,189,248,.28), transparent 70%),
+      #0b1220;
+  }
+}
+
+/* =========================
+   工业硬核 · 蓝色流动网格
+   ========================= */
+.fx-gridflow{
+  position: fixed;
+  inset: 0;
+  z-index: 0;            /* ⬅️ 不再用 -1，避免被 body 背景盖住 */
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(90deg, rgba(56,189,248,.08) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(56,189,248,.08) 0 1px, transparent 1px 120px),
+    radial-gradient(60% 35% at 50% -10%, rgba(56,189,248,.18), transparent 70%);
+
+  background-size: 120px 120px, 120px 120px, auto;
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,.95), rgba(0,0,0,.25) 70%, transparent 100%);
+          mask-image: radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,.95), rgba(0,0,0,.25) 70%, transparent 100%);
+  animation: gridflow 20s linear infinite;
+  will-change: background-position;
+}
+
+/* 让内容永远在网格之上 */
+.site-root{ position: relative; z-index: 1; }
+
+@keyframes gridflow {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 120px 0, 0 120px, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-gridflow { animation-duration: 60s; }
+}
+
+@media (min-width: 1440px) {
+  .fx-gridflow {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(56,189,248,.09) 0 1px, transparent 1px 120px),
+      repeating-linear-gradient(0deg,  rgba(56,189,248,.09) 0 1px, transparent 1px 120px),
+      radial-gradient(70% 40% at 50% -12%, rgba(56,189,248,.22), transparent 75%);
+  }
+}
+
