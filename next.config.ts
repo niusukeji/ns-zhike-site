@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // 告诉 Next 进行静态导出（生成 /out）
-  output: "export",
 
   // 若页面里使用了 <Image>，静态导出必须关闭优化
   images: { unoptimized: true },
