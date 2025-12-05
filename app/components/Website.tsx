@@ -15,6 +15,7 @@ export default function Website() {
               <li>
                 <a href="#solutions">解决方案</a>
               </li>
+              <li><a href="/cases">经典案例</a></li>
               <li>
                 <a href="#about">关于我们</a>
               </li>
@@ -165,34 +166,63 @@ export default function Website() {
       </section>
 
       {/* 联系我们 + 合作与咨询表单 */}
-      <section id="contact" className="contact">
+     <section id="contact" className="contact">
   <div className="container">
     <h2>联系我们</h2>
 
     <div className="contact-info">
+      {/* 业务咨询 */}
       <div className="contact-item">
-        <i className="fas fa-phone-alt" />
+        <i className="fas fa-phone-alt"></i>
         <p>
           业务咨询热线
           <br />
-          <strong>021-1234-5678</strong>
+          <strong>13915561401（赵）</strong>
         </p>
       </div>
+
+      {/* 商务合作 */}
       <div className="contact-item">
-        <i className="fas fa-envelope" />
+        <i className="fas fa-envelope"></i>
         <p>
           商务合作邮箱
           <br />
-          <strong>contact@niusu-keji.com</strong>
+          <strong>contact@niusu-tech.com</strong>
         </p>
       </div>
+
+      {/* 公司地址 */}
       <div className="contact-item">
-        <i className="fas fa-map-marker-alt" />
+        <i className="fas fa-map-marker-alt"></i>
         <p>
           公司地址
           <br />
-          <strong>中国 上海市某某科技园区 A 座</strong>
+          <strong>中国·江苏省泰州市泰兴市</strong>
         </p>
+      </div>
+
+      {/* 公众号二维码 */}
+      <div className="contact-item">
+        <i className="fas fa-qrcode"></i>
+        <p>
+          关注公众号
+          <br />
+          <strong>NS智科</strong>
+        </p>
+       <img
+  src="/ns-wechat-qr.jpg"
+  alt="NS智科公众号二维码"
+  style={{
+    width: '140px',
+    height: '140px',
+    borderRadius: '8px',
+    backgroundColor: '#fff',
+    padding: '4px',
+    display: 'block',
+    margin: '16px auto 0',
+  }}
+/>
+        <p className="mt-2 text-xs opacity-80">长按识别二维码，获取更多案例与方案</p>
       </div>
     </div>
 
