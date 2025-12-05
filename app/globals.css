@@ -1,100 +1,541 @@
-/* ✅ Tailwind v4 推荐写法 */
+/* ===== 全局引入：Font Awesome + Tailwind v4 ===== */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 @import "tailwindcss";
-
-/* 可选：声明要扫描样式的源码目录（更稳） */
 @source "../app/**/*.{js,ts,jsx,tsx}" "../components/**/*.{js,ts,jsx,tsx}";
 
-/* 你的全局样式 */
-:root { color-scheme: dark; }
-html, body { height: 100%; background-color: #0b1220; }
-
-/* --- 工业硬核风辅助类 --- */
-.industrial-bg {
-  background:
-    radial-gradient(60% 40% at 50% -10%, rgba(14,165,233,.18), transparent 60%),
-    radial-gradient(30% 20% at 80% 0%, rgba(34,211,238,.15), transparent 60%),
-    #0b1220;
+/* ===== 颜色与基础设置 ===== */
+:root {
+  --primary-color: #0044cc;    /* 科技蓝 */
+  --secondary-color: #0b1c3c;  /* 深蓝背景 */
+  --accent-color: #ff9900;     /* 安全橙 */
+  --text-color: #333;
+  --light-bg: #f4f7f6;
+  color-scheme: light;
 }
 
-.hero-arc {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(140% 60% at 50% -10%, rgba(56,189,248,.18), transparent 60%);
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.scanline {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size: 100% 36px;
-  opacity: .12;
-  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-  pointer-events: none;
+html,
+body {
+  height: 100%;
 }
 
-.card-glass {
-  box-shadow: 0 0 0 1px rgba(51,65,85,.5) inset, 0 8px 30px rgba(0,0,0,.35);
-  backdrop-filter: blur(6px);
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #ffffff;
 }
 
-.shadow-cyan {
-  box-shadow: 0 10px 20px -8px rgba(34,211,238,.35);
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* 大屏视觉布局微调 */
-@media (min-width: 1440px) {
-  .hero-arc {
-    background: radial-gradient(100% 50% at 50% -20%, rgba(56,189,248,.25), transparent 75%);
-  }
-  .industrial-bg {
-    background:
-      linear-gradient(to bottom, rgba(15,23,42,.9), rgba(15,23,42,.96)),
-      radial-gradient(70% 45% at 50% -10%, rgba(56,189,248,.28), transparent 70%),
-      #0b1220;
-  }
+ul {
+  list-style: none;
 }
 
-/* =========================
-   工业硬核 · 蓝色流动网格
-   ========================= */
-.fx-gridflow{
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 通用容器宽度 */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== 顶部导航（首页 & 详情页共用） ===== */
+header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: fixed;
-  inset: 0;
-  z-index: 0;            /* ⬅️ 不再用 -1，避免被 body 背景盖住 */
-  pointer-events: none;
-
-  background-image:
-    repeating-linear-gradient(90deg, rgba(56,189,248,.08) 0 1px, transparent 1px 120px),
-    repeating-linear-gradient(0deg,  rgba(56,189,248,.08) 0 1px, transparent 1px 120px),
-    radial-gradient(60% 35% at 50% -10%, rgba(56,189,248,.18), transparent 70%);
-
-  background-size: 120px 120px, 120px 120px, auto;
-  -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,.95), rgba(0,0,0,.25) 70%, transparent 100%);
-          mask-image: radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,.95), rgba(0,0,0,.25) 70%, transparent 100%);
-  animation: gridflow 20s linear infinite;
-  will-change: background-position;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-/* 让内容永远在网格之上 */
-.site-root{ position: relative; z-index: 1; }
-
-@keyframes gridflow {
-  0%   { background-position: 0 0, 0 0, 0 0; }
-  100% { background-position: 120px 0, 0 120px, 0 0; }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .fx-gridflow { animation-duration: 60s; }
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
 }
 
-@media (min-width: 1440px) {
-  .fx-gridflow {
-    background-image:
-      repeating-linear-gradient(90deg, rgba(56,189,248,.09) 0 1px, transparent 1px 120px),
-      repeating-linear-gradient(0deg,  rgba(56,189,248,.09) 0 1px, transparent 1px 120px),
-      radial-gradient(70% 40% at 50% -12%, rgba(56,189,248,.22), transparent 75%);
+.logo i {
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.btn-contact {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.btn-contact:hover {
+  background: #003399;
+  color: #fff;
+}
+
+/* ===== 首页首屏 Banner ===== */
+.hero {
+  height: 520px;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 68, 204, 0.95),
+      rgba(11, 28, 60, 0.95)
+    ),
+    url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-top: 70px; /* 避开固定导航栏 */
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.hero-btn {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-1px);
+  background: #e68a00;
+}
+
+/* ===== 首页：三大核心业务板块 ===== */
+.section-title {
+  text-align: center;
+  margin: 80px 0 50px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.section-title .line {
+  width: 60px;
+  height: 4px;
+  background: var(--primary-color);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.solutions {
+  padding-bottom: 80px;
+}
+
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 32px 26px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.card-icon {
+  font-size: 44px;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--secondary-color);
+}
+
+.card p {
+  color: #666;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.card-list {
+  text-align: left;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.card-list li {
+  margin-bottom: 6px;
+}
+
+.card-list li i {
+  color: var(--accent-color);
+  margin-right: 8px;
+}
+
+/* ===== 关于我们 ===== */
+.about {
+  background: var(--light-bg);
+  padding: 80px 0;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-img {
+  flex: 1;
+  min-width: 280px;
+  height: 280px;
+  border-radius: 8px;
+  background: url("https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+}
+
+.about-text h3 {
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+  font-size: 26px;
+}
+
+.about-text p {
+  margin-bottom: 12px;
+  color: #555;
+}
+
+/* ===== 联系我们 + 合作意向表单（首页 & 详情页共用） ===== */
+.contact {
+  padding: 0 0 80px; /* 顶部 padding 为 0，避免黑带顶上来 */
+  margin-top: 60px; /* 和上面的灰色卡片之间留一截白色空隙 */
+  background: var(--secondary-color);
+  color: #fff;
+  text-align: center;
+}
+
+.contact .container {
+  padding-top: 40px; /* 统一顶部内边距 */
+}
+
+.contact h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.contact-item i {
+  font-size: 28px;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.contact-item p {
+  font-size: 14px;
+}
+
+/* 表单区（如果首页有“合作与咨询”表单） */
+.contact-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.contact-layout-left {
+  flex: 1;
+  min-width: 260px;
+  text-align: left;
+}
+
+.contact-layout-right {
+  flex: 1;
+  min-width: 260px;
+}
+
+.cta-form {
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 24px 20px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.cta-form-group {
+  margin-bottom: 14px;
+}
+
+.cta-form label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #e5e7eb;
+}
+
+.cta-form input,
+.cta-form select,
+.cta-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #374151;
+  background: #020617;
+  color: #f9fafb;
+  font-size: 14px;
+}
+
+.cta-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.cta-form small {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #9ca3af;
+}
+
+.cta-form button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 0;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cta-form button:hover {
+  background: #fbbf24;
+  transform: translateY(-1px);
+}
+
+/* ===== 页脚 ===== */
+.footer {
+  background: #000;
+  color: #888;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ===== 解决方案详情页通用样式（动设备 / 配电房 / 消防） ===== */
+
+/* 顶部标题横幅：统一为蓝色渐变，风格和首页一致 */
+.solution-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 68, 204, 0.95),
+    rgba(11, 28, 60, 0.95)
+  );
+  background-size: cover;
+  background-position: center;
+  height: 220px; /* 方案页稍微矮一点，视觉更紧凑 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-top: 70px;
+}
+
+.solution-hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.solution-hero p {
+  font-size: 16px;
+}
+
+/* 中间主体区域 */
+.detail-section {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.detail-section h2 {
+  font-size: 28px;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* 灰色信息块 */
+.content-block {
+  margin-bottom: 32px;
+  padding: 32px 28px;
+  background: var(--light-bg);
+  border-radius: 8px;
+}
+
+.content-block h3 {
+  font-size: 20px;
+  border-left: 5px solid var(--accent-color);
+  padding-left: 12px;
+  margin-bottom: 18px;
+  color: var(--secondary-color);
+}
+
+/* 核心技术亮点小卡片 */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 16px 14px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.feature-item i {
+  font-size: 32px;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.feature-item h4 {
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.feature-item p {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ===== 响应式适配 ===== */
+@media (max-width: 900px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .contact-layout {
+    flex-direction: column;
   }
 }
 
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* 简化：移动端隐藏导航菜单 */
+  }
+
+  .hero {
+    height: 420px;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .detail-section {
+    padding: 40px 0;
+  }
+
+  .solution-hero {
+    height: 200px;
+  }
+
+  .solution-hero h1 {
+    font-size: 24px;
+  }
+
+  .solution-hero p {
+    font-size: 14px;
+  }
+}
