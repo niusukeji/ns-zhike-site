@@ -177,7 +177,7 @@ export default function Website() {
         <p>
           业务咨询热线
           <br />
-          <strong>13915561401（赵）</strong>
+          <strong>13915561401（赵先生）</strong>
         </p>
       </div>
 
@@ -187,7 +187,7 @@ export default function Website() {
         <p>
           商务合作邮箱
           <br />
-          <strong>contact@niusu-tech.com</strong>
+          <strong>huz46922@gmail.com</strong>
         </p>
       </div>
 
