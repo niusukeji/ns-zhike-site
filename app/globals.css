@@ -539,3 +539,132 @@ nav {
     font-size: 14px;
   }
 }
+
+/* =======================
+   经典案例页面样式
+   ======================= */
+
+.case-hero {
+  background: linear-gradient(rgba(11, 28, 60, 0.9), rgba(11, 28, 60, 0.8)),
+    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-top: 70px; /* 顶部固定导航的高度 */
+}
+
+.case-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.case-section {
+  padding: 60px 0;
+}
+
+/* 案例卡片网格布局 */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.case-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 图片区域 */
+.case-img {
+  height: 200px;
+  background-color: #ddd;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* 分类标签 */
+.case-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--accent-color, #ff9900);
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* 文本内容 */
+.case-content {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-date {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.case-content h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--secondary-color, #0b1c3c);
+  line-height: 1.4;
+}
+
+.case-content p {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+  flex-grow: 1; /* 让按钮始终在底部 */
+}
+
+/* “阅读公众号原文”按钮样式 */
+.read-more {
+  color: var(--primary-color, #0044cc);
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.read-more i {
+  margin-left: 5px;
+  transition: margin 0.3s;
+}
+
+.case-card:hover .read-more i {
+  margin-left: 10px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .case-hero {
+    height: 200px;
+  }
+
+  .case-hero h1 {
+    font-size: 32px;
+  }
+}
